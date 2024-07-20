@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, time
 
 from django.core import validators
 from django.db import models
@@ -42,10 +42,15 @@ class Shop(models.Model):
         verbose_name='Дом',
         validators=[validators.MinValueValidator(1)],
     )
-    open_time = models.TimeField(default=datetime.time(minute=0),
+    open_time = models.TimeField(default=time(minute=0),
                                  verbose_name='Время открытия')
-    close_time = models.TimeField(default=datetime.time(minute=0),
+    close_time = models.TimeField(default=time(minute=0),
                                   verbose_name='Время закрытия')
+
+    @property
+    def is_open(self):
+        now = datetime.now().time()
+        return self.open_time <= now <= self.close_time
 
     def __str__(self) -> str:
         return self.name

@@ -6,7 +6,8 @@ from api.views import CitiesViewSet, ShopViewSet, StreetsViewSet
 
 cityshop_router = DefaultRouter()
 cityshop_router.register(r'city', CitiesViewSet)
-cityshop_router.register(r'city/(?P<city_id>[\d]+)/street', StreetsViewSet)
+cityshop_router.register(r'city/(?P<city_id>[\d]+)/street',
+                         StreetsViewSet, basename='city_streets')
 cityshop_router.register(r'shop', ShopViewSet)
 
 urlpatterns = [

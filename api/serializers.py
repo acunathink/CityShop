@@ -16,6 +16,9 @@ class ShopSerializer(serializers.ModelSerializer):
         model = Shop
         fields = '__all__'
 
+    def get_is_open(self, obj: Shop):
+        return obj.is_open
+
 
 class StreetSerializer(serializers.ModelSerializer):
 

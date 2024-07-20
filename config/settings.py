@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-example-a1*a11a0b1!a001$')
 
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS: list[str] = [os.getenv('DJANGO_HOST', '127.0.0.1')]
+ALLOWED_HOSTS: list[str] = os.getenv('DJANGO_HOST', '127.0.0.1').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -98,3 +98,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    'SEARCH_PARAM': ('city', 'street')
+}
