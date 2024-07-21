@@ -3,3 +3,4 @@ djangorestframework==3.14.0
 django-filter==23.5
 
 gunicorn==21.2
+psycopg2-binary==2.9.3
